@@ -1,3 +1,7 @@
-Tuntikirjanpito (Ohjelmoinnin harjoitusty”)
+Tuntikirjanpito (Ohjelmoinnin harjoitustyo)
+
 29.10.2012
-- 2h GitHubin k„ytt””notto ja k„yt”n harjoittelua
+- 2h GitHubin kayttoonotto ja kayton harjoittelua
+
+30.10.2012
+- Aiheen valinta (muistipeli) ja maarittely 1 h
