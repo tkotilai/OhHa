@@ -11,3 +11,9 @@ Tuntikirjanpito (Ohjelmoinnin harjoitustyo)
 
 6.11.2012
 - Netbeans-projektin perustaminen, koodauksen, testauksen ja dokumentoinnin aloittaminen 5 h
+
+12.11.2012
+- Koodin virheiden etsimistä ja korjaamista 2h
+
+13.11.2012
+- Lisää koodin virheiden korjausta, pelikentän luominen ja täyttäminen saatu toimivaksi, aloitetaan pelitoimintojen testaaminen ja tekstikäyttöliittymän suunnittelu/toteutus 4h

@@ -44,4 +44,8 @@ public class Nappula {
   public boolean aukiVaiKiinni(){
       return auki;
   }
+  
+  public String toString(){
+      return "" + this.tunniste;
+  }
 }

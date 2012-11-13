@@ -31,20 +31,18 @@ public class KenttaTest {
         assertNotSame(eka, kentta.satunnainenPaikka());
     }
     
-    @Test
-    public void alustusToimii(){
-        for (int i = 0; i < kentta.kentanKoko()-1;i++){
-            assertEquals(0,kentta.palautaNappula(i).kerroTunniste());
-        }
-    }
-    
+    /**Testimetodi nappuloiden lisäykselle. Syystä tai toisesta ei mene enää läpi sen jälkeen,
+     * kun korjasin nappulan lisäysmenetelmän toimivaksi. Testi valittaa NullPointerExceptionista 
+     * rivillä 45.
+     * 
+     */
     @Test
     public void nappulanLisaysToimii(){
         kentta.lisaaNappulaKentalle(new Nappula(1));
         kentta.lisaaNappulaKentalle(new Nappula(3));
         boolean ekaToimii = false;
         boolean tokaToimii = false;
-        for (int i = 0; i < kentta.kentanKoko()-1; i++){
+        for (int i = 0; i < kentta.kentanKoko(); i++){
             if(kentta.palautaNappula(i).kerroTunniste() == 1){
                 ekaToimii = true;
             }
@@ -55,6 +53,32 @@ public class KenttaTest {
         assertTrue(ekaToimii = true);
         assertTrue(tokaToimii = true);
         
+    }
+    
+    @Test
+    public void nappuloidenAvaaminenToimii(){
+        boolean toimii;
+        Kentta testi = new Kentta(2);
+        testi.lisaaNappulaKentalle(new Nappula(1));
+        testi.lisaaNappulaKentalle(new Nappula(1));
+        testi.naytaPari(0,1);
+        if (testi.palautaNappula(0).aukiVaiKiinni()==true && testi.palautaNappula(1).aukiVaiKiinni()==true){
+            toimii = true;
+        }
+        assertTrue(toimii = true);
+    }
+    
+    @Test
+    public void onPariToimii(){
+        Kentta testi = new Kentta(2);
+        testi.lisaaNappulaKentalle(new Nappula(1));
+        testi.lisaaNappulaKentalle(new Nappula(2));
+        assertEquals(false, testi.onPari(0, 1));
+        
+        Kentta testi2 = new Kentta(2);
+        testi2.lisaaNappulaKentalle(new Nappula(1));
+        testi2.lisaaNappulaKentalle(new Nappula(1));
+        assertEquals(true, testi2.onPari(0, 1));
     }
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
