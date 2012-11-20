@@ -17,3 +17,12 @@ Tuntikirjanpito (Ohjelmoinnin harjoitustyo)
 
 13.11.2012
 - Lisää koodin virheiden korjausta, pelikentän luominen ja täyttäminen saatu toimivaksi, aloitetaan pelitoimintojen testaaminen ja tekstikäyttöliittymän suunnittelu/toteutus 4h
+
+16.11.2012
+- Tekstikäyttöliittymän suunnittelua, alustavaa toteutusta ja sen aiheuttamia korjauksia muuhun koodiin 3h
+
+17.11.2012
+- Tekstikäyttöliittymän toteuttamista, peli yhden pelaajan pelattavassa kunnossa 6h
+
+20.11.2012
+- Dokumentaation ja sekvenssikaavion luomista, testien kirjoitusta, 2h

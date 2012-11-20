@@ -78,7 +78,24 @@ public class Kentta {
       }
   }
   
-  /** Metodi muuttaa löydetyn parin näkyväksi.
+  /**Metodilla avataan yksi nappula näkyväksi. Käytetään kääntämään nappula näkyviin
+   * pelivuoron aikana.
+   * 
+   * @param paikka 
+   */
+  public void naytaNappula(int paikka){ //<-testit!
+      nappulat[paikka].avaaNappula();
+  }
+  
+  /**Metodilla käännetään nappula piiloon, käytetään piilottamaan nappula etsintäyrityksen
+   * jälkeen.
+   * 
+   * @param paikka 
+   */
+  public void piilotaNappula(int paikka){//<-testit!
+      nappulat[paikka].piilotaNappula();
+  }
+  /** Metodi muuttaa löydetyn parin näkyväksi. 
    * 
    * @param nappula1
    * @param nappula2 
@@ -111,6 +128,7 @@ public class Kentta {
    * 
    * @return 
    */
+    @Override
   public String toString(){
       String sisalto = "";
       for (int i = 0; i < nappulat.length; i++){
@@ -122,6 +140,7 @@ public class Kentta {
       }
       return sisalto;
   }
+  
   /**Kokeellista tekstikäyttöliittymää varten luotu metodi, jonka tehtävä on huolehtia tulosteen ulkoasusta.
    * Ei toimi oikein toistaiseksi.
    * 
@@ -130,13 +149,25 @@ public class Kentta {
   public String piirraKentta(){
       String kentta = "";
       for (int i = 0; i < nappulat.length; i++){
-          if(nappulat[i].aukiVaiKiinni()== false){
-              kentta = kentta + " x ";
-          } else {
-              kentta = kentta + nappulat[i].toString();
+          if (i == (nappulat.length/2)){
+              kentta = kentta + "\n";
           }
+          kentta = kentta + piirraPaikka(i) + " ";
       }
- 
+      kentta = kentta + "\n";
       return kentta;
+  }
+  
+  /**Apumetodi kentän piirtämiseen tekstisovelluksessa. Täyttää kentän ruudut.
+   * 
+   * @param i
+   * @return 
+   */
+  private String piirraPaikka(int i){
+      if (nappulat[i].aukiVaiKiinni() == false){
+          return "x";
+      } else {
+          return nappulat[i].toString();
+      }
   }
 }

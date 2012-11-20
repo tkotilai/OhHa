@@ -12,28 +12,25 @@ public class TestiMain {
      */
 
     public static void main(String[] args) {
-        int n = 0;
-        Pelaaja pelaaja = new Pelaaja("Tahvo");
-        Logiikka peli = new Logiikka(1, pelaaja);
         Scanner lukija = new Scanner(System.in);
-        //Tekstikayttoliittyma kayttis = new Tekstikayttoliittyma();
+        Kentta testi = new Kentta(12);                
+        Logiikka peli = new Logiikka(testi);
+        System.out.println("Pelaaja, kerro nimesi.");
+        Pelaaja pelaaja = new Pelaaja(lukija.nextLine());
+        //peli.taytaKentta();
         
-
-        peli.taytaKentta();
-        System.out.println(peli.piirraKentta());
-        while (n < 4){
-
-            System.out.println("Etsi pareja, valitse paikat."+ "\n" + "Anna ensimmäinen syöte.");
-            int ensimmainen = lukija.nextInt();
-            System.out.println("Anna toinen syöte.");
-            int toinen = lukija.nextInt();
-
-            peli.etsiParia(ensimmainen, toinen);
-            System.out.println(peli.piirraKentta());
-            n++;
-        }
-        //System.out.println(peli.toString());
-
-     
+        Tekstikayttoliittyma kayttis = new Tekstikayttoliittyma (lukija, peli, pelaaja);
+        kayttis.runPeli();
+    
+//        peli.taytaKentta();
+//        System.out.println(peli.piirraKentta());
+//        peli.etsiParia(1, 2);
+//        System.out.println(peli.piirraKentta());
+        
+//        kayttis.alustaPeli();
+//        kayttis.pelaaVuoro();
+//        kayttis.pelaaVuoro();        
+//        kayttis.pelaaVuoro();
+//        kayttis.pelaaVuoro();       
     }
 }

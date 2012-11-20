@@ -1,8 +1,8 @@
 package PeliLogiikka;
+import java.util.*;
 
 public class Logiikka {
   private Kentta kentta;
-  private Pelaaja pelaaja; 
   
   /**Luokan konstruktori, luo pelikentan vaikeusasteen mukaan (jonka ottaa parametrinä,
    * liittaa pelaajat peliin, koodi kesken, korjataan myöhemmin oikeaa peliä vastaavaksi.
@@ -12,14 +12,10 @@ public class Logiikka {
    * @param vaikeustaso
    * @param pelaaja 
    */
-  public Logiikka (int vaikeustaso, Pelaaja pelaaja){
-      this.pelaaja = pelaaja; 
-      if (vaikeustaso == 1){
-          this.kentta = new Kentta (4);
-      } else {
-          this.kentta = new Kentta (20);
-      }
+  public Logiikka (Kentta kentta){ 
+      this.kentta = kentta;
   }
+  
   
   /**Metodi, jolla peli etsii pareja pelaajan syötteen perusteella. 
    * Syötteet tulevat käyttöliittymän puolelta parametrien arvoiksi.
@@ -29,10 +25,9 @@ public class Logiikka {
    * @param toinen
    * @return 
    */
-  public boolean etsiParia(int ensimmainen, int toinen){      
+  public boolean etsiParia(int ensimmainen, int toinen){
+      
       if (kentta.onPari(ensimmainen, toinen)== true){
-          kentta.naytaPari(ensimmainen, toinen);
-          pelaaja.kasvataPisteita();
           System.out.println("Löysit parin");
           return true;
       } else {
@@ -40,7 +35,24 @@ public class Logiikka {
           return false;
       }
   }
+  /**Metodi, jolla nappulat laitetaan piiloon vuoron lopuksi, mikäli paria ei ole löytynyt.
+   * 
+   * @param nappula1
+   * @param nappula2 
+   */
+  public void piilotaNappulat(int nappula1, int nappula2){
+          kentta.piilotaNappula(nappula1);
+          kentta.piilotaNappula(nappula2);    
+  }
   
+  public boolean onkoJoLoydetty(int i){
+      if(kentta.palautaNappula(i).aukiVaiKiinni()== true){
+          return true;
+      } else {
+          return false;
+      }
+  }
+
   /**Metodi alustaa pelikentän vaikeusasteen perusteella, lisäämällä sinne eri tyyppisiä
    * nappuloita pareittain. Tunnisteet yksilöivät nappulat ja niiden numerointi kasvaa juoksevasti
    * aina kun uusi pari on lisätty kentälle/taulukkoon.
@@ -54,22 +66,33 @@ public class Logiikka {
           tunniste ++;
       }    
   }
+ 
+  /**Metodi avaa nappulan näkyviin vuoron ajaksi. Ottaa parametrina nappulan paikan ja palauttaa sen
+   * 
+   * @param paikka
+   * @return 
+   */
+  public int naytaNappula(int paikka){
+      kentta.naytaNappula(paikka);
+      System.out.println(piirraKentta());
+      return paikka;
+  }
+  
+  /**Metodi palauttaa pelikentän koon.
+   * 
+   * @return 
+   */
+  public int pelikentanKoko(){
+      return kentta.kentanKoko();
+  }
   
   /**Metodi pelikentän tulostamiseen tekstikäyttöliittymää varten. Voidaan kutsua sovelluslogiikan puolelta.
-   * Palauttaa merkkiesityksen pelikentästä kutsumalla kentän metodia. Ei toimi toistaiseksi kunnolla.
+   * Palauttaa merkkiesityksen pelikentästä kutsumalla kentän metodia.
    * 
    * @return 
    */
   public String piirraKentta(){
       return kentta.piirraKentta();
-  }
-  
-  /**Metodi pelaajan pisteiden selvittämiseksi. Palauttaa ne int-tyyppisenä muuttujana.
-   * 
-   * @return 
-   */
-  public int kerroPisteet(){
-      return pelaaja.getPisteet();
   }
   
   /**Toistaiseksi turha toString-metodi, testauksen vuoksi...
