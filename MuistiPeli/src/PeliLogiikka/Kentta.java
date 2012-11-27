@@ -1,6 +1,11 @@
 package PeliLogiikka;
 import java.util.*;
 
+/**Luokka kenttä toimii pelinappuloiden "varastona", josta niiden tilaan pääsee käsiksi. 
+ * Pelilaudan abstraktio.
+ * 
+ * @author Tommi
+ */
 public class Kentta {
   private Nappula nappulat[];
   private int koko;

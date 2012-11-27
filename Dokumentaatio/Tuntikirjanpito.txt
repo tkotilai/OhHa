@@ -26,3 +26,9 @@ Tuntikirjanpito (Ohjelmoinnin harjoitustyo)
 
 20.11.2012
 - Dokumentaation ja sekvenssikaavion luomista, testien kirjoitusta, 2h
+
+24.11.2012
+- Tiedostojen lukijan ja kirjoittajan kehittämistä käyttäjälistoja tms varten. ei onnistunut. 4h
+
+26.11.2012
+-Ongelma tiedostojen lukijan kanssa selvisi, kyse tiedostoformaattimokasta, jäljessä aikataulusta, aloitetaan graafisen käyttöliittymän toteuttaminen. 3h

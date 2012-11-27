@@ -4,6 +4,8 @@ package Kayttoliittyma;
 import java.util.*;
 import PeliLogiikka.*;
 import Kayttoliittyma.*;
+import java.io.*;
+import javax.swing.SwingUtilities;
 public class TestiMain {
     
     /**Testiluokka ohjelman testaamiseksi.
@@ -16,10 +18,13 @@ public class TestiMain {
         Kentta testi = new Kentta(12);                
         Logiikka peli = new Logiikka(testi);
         System.out.println("Pelaaja, kerro nimesi.");
-        Pelaaja pelaaja = new Pelaaja(lukija.nextLine());
+        Pelaaja pelaaja = new Pelaaja(lukija.nextLine());      
         //peli.taytaKentta();
         
         Tekstikayttoliittyma kayttis = new Tekstikayttoliittyma (lukija, peli, pelaaja);
+//        GraafinenKayttoliittyma graafis = new GraafinenKayttoliittyma();
+//        SwingUtilities.invokeLater(graafis);
+        
         kayttis.runPeli();
     
 //        peli.taytaKentta();

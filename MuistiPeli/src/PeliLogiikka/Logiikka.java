@@ -1,6 +1,10 @@
 package PeliLogiikka;
 import java.util.*;
 
+/**Luokka sisältää pelin pelaamiseen tarvittavat operaatiot, joita käyttöliittymä kutsuu.
+ * 
+ * @author Tommi
+ */
 public class Logiikka {
   private Kentta kentta;
   

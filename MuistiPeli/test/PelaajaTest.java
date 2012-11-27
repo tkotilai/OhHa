@@ -5,6 +5,7 @@ import PeliLogiikka.Pelaaja;
 public class PelaajaTest {
     
     Pelaaja pelaaja;
+    Pelaaja pelaaja2;
     
     public PelaajaTest() {
     }
@@ -46,6 +47,22 @@ public class PelaajaTest {
         assertEquals(1, pelaaja.getPisteet());
         pelaaja.kasvataPisteita();
         assertEquals(2, pelaaja.getPisteet());
+    }
+    
+    @Test
+    public void compareToToimii(){
+        pelaaja = new Pelaaja("Jope");
+        pelaaja2 = new Pelaaja("Kalle"); 
+        pelaaja.kasvataPisteita();
+        assertTrue(pelaaja.compareTo(pelaaja2)>0);
+        while(pelaaja2.getPisteet()<1000){
+            pelaaja2.kasvataPisteita();
+        }
+        assertTrue(pelaaja.compareTo(pelaaja2)<0);
+//        while(pelaaja.getPisteet()<999){
+//            pelaaja.kasvataPisteita();
+//        }
+//        assertTrue(pelaaja.compareTo(pelaaja2)==0);
     }
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:

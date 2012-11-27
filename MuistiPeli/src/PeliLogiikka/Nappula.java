@@ -1,5 +1,11 @@
 package PeliLogiikka;
 
+
+/**Nappula-luokka sisältää pelinappuloiden kannalta olennaiset tiedot ja metodit, kuten 
+ * tunnisteet ja metodit nappulan tilan muuttamiseen.
+ * 
+ * @author Tommi
+ */
 public class Nappula {
   private int tunniste;
   private boolean auki;
@@ -44,7 +50,10 @@ public class Nappula {
   public boolean aukiVaiKiinni(){
       return auki;
   }
-  
+  /**Metodi palauttaa nappulan tunnistearvon String-muotoisena.
+   * 
+   * @return 
+   */
   public String toString(){
       return "" + this.tunniste;
   }

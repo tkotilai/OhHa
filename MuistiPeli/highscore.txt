@@ -1,0 +1,3 @@
+pate 3 vuoroa
+pera 5 vuoroa
+make 7 vuoroa

@@ -1,0 +1,33 @@
+    public void Kirjoittaja(String lisattava, File tiedosto){
+        String lista = tiedostonLukija(tiedosto);
+        System.out.println(lista);
+        if(lista.contains(lisattava)==false){
+            try{
+                FileWriter tallennin = new FileWriter(tiedosto);
+                tallennin.write(lista);
+                tallennin.write(lisattava);                      
+                tallennin.close();
+            } catch (Exception e ){
+                System.out.println("Virhe: " + e.getMessage());
+            }
+        }
+    }
+    
+    public String tiedostonLukija(File tiedosto){
+        String rivi ="";
+        Scanner apulainen;
+
+        try {
+            apulainen = new Scanner(tiedosto);
+        } catch (Exception e) {
+            System.out.println("Tiedoston lukeminen epäonnistui. Virhe: " + e.getMessage());
+            return "";
+        }
+
+        while (apulainen.hasNextLine()) {
+            rivi = rivi + apulainen.nextLine() + "\n";
+        }
+
+        apulainen.close();
+        return rivi;
+    }

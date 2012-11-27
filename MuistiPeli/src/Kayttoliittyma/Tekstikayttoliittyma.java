@@ -1,6 +1,9 @@
 package Kayttoliittyma;
 import PeliLogiikka.*;
 import java.util.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 
 //Lisää metodit pelin lopettamiselle kesken ja tallentamiselle/lataamiselle ja high score-listan generoinnille.
 // Sitten luomaan graafista käyttistä. Dokumentaatioon sekvenssikaaviot ja UML-luonnokseen 
@@ -18,6 +21,10 @@ public class Tekstikayttoliittyma {
     private Logiikka peli;
     private Pelaaja pelaaja;
     private int vuoro;
+    private File highscore;
+    private File kayttajat;
+    private File salasanat;
+    private TiedostonHallinta tiedostot;
     
 /**Luokan konstruktori.
  * 
@@ -30,6 +37,8 @@ public class Tekstikayttoliittyma {
         this.pelaaja = pelaaja;
         this.peli = peli;
         this.vuoro = 0;
+        this.kayttajat = new File("testi.txt");
+        this.highscore = new File("highscore.txt");        
     }
     
 /**Metodi valmistaa pelilaudan pelaamista varten.
@@ -39,20 +48,31 @@ public class Tekstikayttoliittyma {
         peli.taytaKentta();
     }
     
-/**Metodi, joka sisältää yhden vuoron aikana tehtävät toimenpiteet.
+/**Metodi, joka sisältää yhden vuoron aikana tehtävät toimenpiteet. <-Pitäisi varmaan siirtää
+ * logiikan puolelle?
  * 
  * @return 
  */
     public boolean pelaaVuoro(){//<-toistaiseksi public-määreellä testausta varten, myöhemmin private
         System.out.println(peli.piirraKentta());
         
-        System.out.println("Etsi pari. Anna ensimmaisen parin koordinaatit");
+        System.out.println("Etsi pari. Anna ensimmaisen parin koordinaatit." + "\n" +
+                "0 lopettaa pelin.");
         int eka = otaSyote();
+        
+        if (eka == 0){
+            return true;
+        }
 
         peli.naytaNappula(eka);   
             
-        System.out.println("Anna toisen parin koordinaatit");
+        System.out.println("Anna toisen parin koordinaatit"+ "\n" +
+                "0 lopettaa pelin.");
         int toka = otaSyote();
+        
+        if (toka == 0){
+            return true;
+        }
 
         peli.naytaNappula(toka);
         
@@ -79,7 +99,7 @@ public class Tekstikayttoliittyma {
         
         System.out.println(pelaaja.getNimi() + "\n" + "Pisteet: " + pelaaja.getPisteet());
         this.vuoro++;
-        return true;
+        return false;
     }
     
 /**Metodi palauttaa vuoron numeron, voidaan käyttää pelin lopettamiseen tarvittaessa.
@@ -99,6 +119,12 @@ public class Tekstikayttoliittyma {
             try{
                 int syote = Integer.parseInt(lukija.nextLine());
                 syote = syote - 1;
+                
+                if(syote<0){
+                    syote = 0;
+                    return syote;
+                }
+                
                 while(true){
                     if (syoteHyvaksyttava(syote)==true){
                         System.out.println();
@@ -140,7 +166,7 @@ public class Tekstikayttoliittyma {
     }
     
 /**Metodi, jolla peli lopetetaan kaikkien parien löydyttyä. Palauttaa arvon true, jos kaikki
- * parit on löydetty.
+ * parit on löydetty. <-Pitänee siirtää pelilogiikan puolelle.
  * 
  * @return 
  */
@@ -160,20 +186,28 @@ public class Tekstikayttoliittyma {
         
         return onkoLoppu;
     }
+        
+    
     
 /**Metodi, jolla pelin pelaaminen käynnistetään.
  * 
  */
     public void runPeli(){
-        alustaPeli();
-        
-        while(onkoPeliLoppu()==false){
-            pelaaVuoro();
+        boolean loppu = false;
+        alustaPeli();        
+
+        while(loppu == false){
+            loppu = pelaaVuoro();
+            if(loppu==true){
+                break;
+            }
+            if(onkoPeliLoppu()==true){
+                break;
+            }
         }
         
-        System.out.println("Kaikki parit loydetty!" + "\n" + pelaaja.getNimi() +
+        System.out.println("Peli loppu!" + "\n" + pelaaja.getNimi() +
                 ", pisteesi ovat: " + pelaaja.getPisteet() + "\n" + 
                 "Sinulla meni siihen " + getVuoro() + " vuoroa.");
-    }
-    
+    }   
 }
