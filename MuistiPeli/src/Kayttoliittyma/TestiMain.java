@@ -14,19 +14,19 @@ public class TestiMain {
      */
 
     public static void main(String[] args) {
-        Scanner lukija = new Scanner(System.in);
-        Kentta testi = new Kentta(12);                
-        Logiikka peli = new Logiikka(testi);
-        System.out.println("Pelaaja, kerro nimesi.");
-        Pelaaja pelaaja = new Pelaaja(lukija.nextLine());      
+//        Scanner lukija = new Scanner(System.in);
+//        Kentta testi = new Kentta(12);                
+//        Logiikka peli = new Logiikka(testi);
+//        System.out.println("Pelaaja, kerro nimesi.");
+//        Pelaaja pelaaja = new Pelaaja(lukija.nextLine());      
         //peli.taytaKentta();
         
-        Tekstikayttoliittyma kayttis = new Tekstikayttoliittyma (lukija, peli, pelaaja);
-//        GraafinenKayttoliittyma graafis = new GraafinenKayttoliittyma();
-//        SwingUtilities.invokeLater(graafis);
+//        Tekstikayttoliittyma kayttis = new Tekstikayttoliittyma (lukija, peli, pelaaja);
+        GraafinenKayttoliittyma graafis = new GraafinenKayttoliittyma();
+        SwingUtilities.invokeLater(graafis);
         
-        kayttis.runPeli();
-    
+//        kayttis.runPeli();
+//    
 //        peli.taytaKentta();
 //        System.out.println(peli.piirraKentta());
 //        peli.etsiParia(1, 2);

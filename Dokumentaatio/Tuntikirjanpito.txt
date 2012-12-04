@@ -31,4 +31,21 @@ Tuntikirjanpito (Ohjelmoinnin harjoitustyo)
 - Tiedostojen lukijan ja kirjoittajan kehittämistä käyttäjälistoja tms varten. ei onnistunut. 4h
 
 26.11.2012
--Ongelma tiedostojen lukijan kanssa selvisi, kyse tiedostoformaattimokasta, jäljessä aikataulusta, aloitetaan graafisen käyttöliittymän toteuttaminen. 3h
+- Ongelma tiedostojen lukijan kanssa selvisi, kyse tiedostoformaattimokasta, jäljessä aikataulusta, aloitetaan graafisen käyttöliittymän toteuttaminen. 3h
+
+28.11.2012
+- Swing kertausta, käyttöliittymän luonnostelua. 2h
+
+01.12.2012
+- Käyttöliittymän toteuttamista. Ei edistystä, ongelma tapahtumankuuntelijan toiminnassa. 6h
+
+02.12.2012
+- Edelleen ongelmia tapahtumankuuntelijan kanssa, ei edistystä. 6h
+
+03.12.2012
+- Ohjauksessa saatiin ratkaisuehdotus tapahtumankuuntelijan ongelmaan. 2h
+
+04.12.2012
+- Tapahtumankuuntelijan ongelma osittain ratkaistu, vakavia ongelmia kuitenkin toimivan parinetsinnän kanssa, koodi ei tunnista löydettyjä pareja tms. Lopulta saatu aikaan toimiva pohja pelikentästä demopäivää varten. 12h
+
+

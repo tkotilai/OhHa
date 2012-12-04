@@ -12,6 +12,8 @@ import javax.swing.*;
 public class GraafinenKayttoliittyma implements Runnable{
     
     private JFrame frame;
+    private Peliruutu ruutu;
+    private AloitusIkkuna alku;
     
     
     public GraafinenKayttoliittyma(){
@@ -20,15 +22,19 @@ public class GraafinenKayttoliittyma implements Runnable{
     
     @Override
     public void run(){
-        frame = new JFrame("Muistipeli");
-        frame.setPreferredSize(new Dimension(400, 200));
-
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-        luoKomponentit(frame.getContentPane());
+        alku = new AloitusIkkuna();
+        ruutu = new Peliruutu(16);
+//        frame = alku.luoKomponentit();
+//        frame.pack();
+//        frame.setVisible(true);
+//        frame.dispose();
+//        
+        frame = ruutu.luoKomponentit();
 
         frame.pack();
         frame.setVisible(true);
+        
+
     }
 
     private void luoKomponentit(Container container) {

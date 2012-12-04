@@ -76,7 +76,8 @@ public class Kentta {
    * @return 
    */
   public boolean onPari(int nappula1, int nappula2){
-      if(nappulat[nappula1].kerroTunniste() == nappulat[nappula2].kerroTunniste()){
+      if(nappulat[nappula1].kerroTunniste() == nappulat[nappula2].kerroTunniste()
+              && nappula1 != nappula2){
           return true;
       } else {
           return false;

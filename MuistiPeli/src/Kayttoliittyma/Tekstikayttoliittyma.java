@@ -60,7 +60,7 @@ public class Tekstikayttoliittyma {
                 "0 lopettaa pelin.");
         int eka = otaSyote();
         
-        if (eka == 0){
+        if (eka < 0){
             return true;
         }
 
@@ -70,7 +70,7 @@ public class Tekstikayttoliittyma {
                 "0 lopettaa pelin.");
         int toka = otaSyote();
         
-        if (toka == 0){
+        if (toka < 0){
             return true;
         }
 
@@ -120,7 +120,7 @@ public class Tekstikayttoliittyma {
                 int syote = Integer.parseInt(lukija.nextLine());
                 syote = syote - 1;
                 
-                if(syote<0){
+                if(syote<=0){
                     syote = 0;
                     return syote;
                 }

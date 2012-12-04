@@ -9,6 +9,7 @@ package PeliLogiikka;
 public class Nappula {
   private int tunniste;
   private boolean auki;
+  private boolean loydetty;
   
   /**Luokan konstruktori, vaatii kokonaislukun parametrina,
    *tunniste-muuttujan avulla suoritetaan parien etsintä,
@@ -19,6 +20,7 @@ public class Nappula {
   public Nappula(int tunniste){ 
       this.tunniste = tunniste; 
       this.auki = false;        
+      this.loydetty = false;
   }                     
   
   /** Metodi palauttaa nappulan tunnisteen.
@@ -50,6 +52,16 @@ public class Nappula {
   public boolean aukiVaiKiinni(){
       return auki;
   }
+  
+  public void loydetty(){
+      this.loydetty = true;
+  }
+  
+  public boolean onkoLoydetty(){
+      return loydetty;
+  }
+  
+  
   /**Metodi palauttaa nappulan tunnistearvon String-muotoisena.
    * 
    * @return 

@@ -99,6 +99,21 @@ public class Logiikka {
       return kentta.piirraKentta();
   }
   
+  public boolean onkoPeliLoppu(){ 
+      boolean onkoLoppu = false;     
+      int nappuloidenLaskuri = 0;
+        
+      for (int i = 0; i < pelikentanKoko(); i++){
+        if (onkoJoLoydetty(i)==true){
+            nappuloidenLaskuri++;
+        }
+      }
+        
+      if (nappuloidenLaskuri == pelikentanKoko()){
+        onkoLoppu = true;
+      }        
+      return onkoLoppu;
+  }
   /**Toistaiseksi turha toString-metodi, testauksen vuoksi...
    * 
    * @return 
