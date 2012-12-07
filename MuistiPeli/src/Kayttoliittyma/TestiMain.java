@@ -8,22 +8,57 @@ import java.io.*;
 import javax.swing.SwingUtilities;
 public class TestiMain {
     
-    /**Testiluokka ohjelman testaamiseksi.
+    /**Main-luokka ohjelman testaamiseksi.
      * 
      * @param args 
      */
-
     public static void main(String[] args) {
-//        Scanner lukija = new Scanner(System.in);
-//        Kentta testi = new Kentta(12);                
-//        Logiikka peli = new Logiikka(testi);
-//        System.out.println("Pelaaja, kerro nimesi.");
-//        Pelaaja pelaaja = new Pelaaja(lukija.nextLine());      
-        //peli.taytaKentta();
-        
-//        Tekstikayttoliittyma kayttis = new Tekstikayttoliittyma (lukija, peli, pelaaja);
         GraafinenKayttoliittyma graafis = new GraafinenKayttoliittyma();
-        SwingUtilities.invokeLater(graafis);
+        graafis.run();
+//        try{
+//            File tiedosto = new File("lukijantestausta.txt");
+//            TiedostonHallinta tiedostot = new TiedostonHallinta(tiedosto);
+//            System.out.println(tiedostot.lueTiedostosta());
+//        } catch (Exception e){
+//            System.out.println("virhe");
+//        }
+
+//        return rivi;
+
+//        // tiedosto mistä luetaan
+//        Scanner lukija = null;
+//            
+//        try {
+//            File tiedosto = new File("lukijantestausta.txt");
+//            lukija = new Scanner(tiedosto);
+//        } catch (Exception e) {
+//            System.out.println("Tiedoston lukeminen epäonnistui. Virhe: " + e.getMessage());
+//            return; // poistutaan metodista
+//        }
+//
+//        while (lukija.hasNextLine()) {
+//            String rivi = lukija.nextLine();
+//            System.out.println(rivi);
+//        }
+//
+//        lukija.close();
+//    }   
+        
+
+//        GraafinenKayttoliittyma graafis = new GraafinenKayttoliittyma();
+//        SwingUtilities.invokeLater(graafis);
+    }
+}
+
+        
+
+        
+//        Pelaaja pelaaja = new Pelaaja(lukija.nextLine());  
+//        Logiikka peli = new Logiikka("helppo", pelaaja);
+//        peli.taytaKentta();
+//        
+//        Tekstikayttoliittyma kayttis = new Tekstikayttoliittyma (lukija, peli, pelaaja);
+
         
 //        kayttis.runPeli();
 //    
@@ -37,5 +72,5 @@ public class TestiMain {
 //        kayttis.pelaaVuoro();        
 //        kayttis.pelaaVuoro();
 //        kayttis.pelaaVuoro();       
-    }
-}
+//    }
+//}

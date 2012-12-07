@@ -1,54 +1,38 @@
 package Kayttoliittyma;
 
+import PeliLogiikka.Pelaaja;
 import java.awt.*;
 import javax.swing.*;
 
-/**Luonnos graafiselle käyttöliittymälle, toistaiseksi sisältää lähinnä Swing-harjoittelua ja 
- * kertausta.
- * 
+/**Graafisen käyttöliittymän käynnistysluokka. Sisältää pääohjelmasta kutsuttavan run()-metodin,
+ * jonka avulla käyttöliittymä käynnistetään sen ensimmäistä ikkunaa kutsumalla.
  * @author Tommi
  */
 
 public class GraafinenKayttoliittyma implements Runnable{
     
     private JFrame frame;
-    private Peliruutu ruutu;
+    private JPanel peli;
+    private PeliIkkuna ruutu;
     private AloitusIkkuna alku;
     
-    
-    public GraafinenKayttoliittyma(){
-        
+    /**Luokan konstruktori, parametriton, valmistelee pelin luomalla AloitusIkkuna-luokan 
+     * ilmentymän.
+     * 
+     */
+    public GraafinenKayttoliittyma(){        
+        this.alku = new AloitusIkkuna();
     }
     
+    /**Runnable-rajapinnan toteuttamiseen vaadittava metodi, joka mahdollistaa käyttöliittymän
+     * ajamisen. Luo käyttöliittymän ensimmäisen ikkunan, valmistelee sen graafisen elementit, 
+     * pakkaa ne JFrame-olioon, jonka se asettaa näkyväksi.
+     * 
+     */
     @Override
-    public void run(){
-        alku = new AloitusIkkuna();
-        ruutu = new Peliruutu(16);
-//        frame = alku.luoKomponentit();
-//        frame.pack();
-//        frame.setVisible(true);
-//        frame.dispose();
-//        
-        frame = ruutu.luoKomponentit();
-
+    public void run(){        
+        frame = alku.luoKomponentit();       
         frame.pack();
         frame.setVisible(true);
-        
-
-    }
-
-    private void luoKomponentit(Container container) {
-        container.setLayout(new BorderLayout());
-        JLabel teksti = new JLabel("Pelaaja, anna nimesi.");
-        JTextField nimi = new JTextField();
-        JButton nappi = new JButton("Hyvaksy");
-        
-        container.add(teksti, BorderLayout.NORTH);
-        container.add(nimi, BorderLayout.CENTER);
-        container.add(nappi, BorderLayout.SOUTH);
-    }
-
-    public JFrame getFrame() {
-        return frame;
-    }
+   }    
 }

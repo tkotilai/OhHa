@@ -48,4 +48,11 @@ Tuntikirjanpito (Ohjelmoinnin harjoitustyo)
 04.12.2012
 - Tapahtumankuuntelijan ongelma osittain ratkaistu, vakavia ongelmia kuitenkin toimivan parinetsinnän kanssa, koodi ei tunnista löydettyjä pareja tms. Lopulta saatu aikaan toimiva pohja pelikentästä demopäivää varten. 12h
 
+05.12.2012
+- Graafisen käyttöliittymän laajentamista, ohjelman rakenteen siistimistä ja bugien paikkailua. 3h
 
+06.12.2012
+- Käyttöliittymän laajentamista, parantelua ja ohjelman siistimistä. Tiedostonhallinta ei jostain syystä toimi!? 8h
+
+07.12.2012
+- Viime hetken ohjelman paniikkisäätämistä, dokumentaation korjailua/laajentamista ja paniikkia läpipääsystä 4h.

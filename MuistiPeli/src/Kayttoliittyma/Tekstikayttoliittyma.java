@@ -5,12 +5,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 
-//Lisää metodit pelin lopettamiselle kesken ja tallentamiselle/lataamiselle ja high score-listan generoinnille.
-// Sitten luomaan graafista käyttistä. Dokumentaatioon sekvenssikaaviot ja UML-luonnokseen 
-//osallistumisrajoitteet ja ohjelman tämänhetkinen kuvaus.
-
-
-/**Tekstikäyttöliitymä mahdollistaa muistipelin pelaamisen. Se ottaa
+/**Tekstikäyttöliittymä mahdollistaa muistipelin pelaamisen. Se ottaa
  * vastaan syötteitä käyttäjältä, varmistaa niiden sopivuuden ja kutsuu muita luokkia pelin
  * pyörittämiseksi.
  * 
@@ -78,11 +73,13 @@ public class Tekstikayttoliittyma {
         
         if(peli.etsiParia(eka, toka) == false){
             peli.piilotaNappulat(eka,toka);
+            System.out.println("Ei pari.");
         } else {
+            System.out.println("Loysit parin!");
             pelaaja.kasvataPisteita();
         }
         
-        if(onkoPeliLoppu()==true){
+        if(peli.onkoPeliLoppu()==true){
             vuoro++;
             return true;
         }
@@ -163,31 +160,7 @@ public class Tekstikayttoliittyma {
         }
 
         return syoteOk;
-    }
-    
-/**Metodi, jolla peli lopetetaan kaikkien parien löydyttyä. Palauttaa arvon true, jos kaikki
- * parit on löydetty. <-Pitänee siirtää pelilogiikan puolelle.
- * 
- * @return 
- */
-    public boolean onkoPeliLoppu(){
-        boolean onkoLoppu = false;
-        int nappuloidenLaskuri = 0;
-        
-        for (int i = 0; i < peli.pelikentanKoko(); i++){
-            if (peli.onkoJoLoydetty(i)==true){
-                nappuloidenLaskuri++;
-            }
-        }
-        
-        if (nappuloidenLaskuri == peli.pelikentanKoko()){
-            onkoLoppu = true;
-        }
-        
-        return onkoLoppu;
-    }
-        
-    
+    }   
     
 /**Metodi, jolla pelin pelaaminen käynnistetään.
  * 
@@ -201,7 +174,7 @@ public class Tekstikayttoliittyma {
             if(loppu==true){
                 break;
             }
-            if(onkoPeliLoppu()==true){
+            if(peli.onkoPeliLoppu()==true){
                 break;
             }
         }

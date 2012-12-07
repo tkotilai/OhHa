@@ -53,19 +53,27 @@ public class Nappula {
       return auki;
   }
   
+  /**Metodin kutsuminen määrittää nappulan löytyneeksi.
+   * 
+   */
   public void loydetty(){
       this.loydetty = true;
   }
   
+  /**Metodi kertoo onko nappula jo löydetty. Palauttaa arvon true, mikäli
+   * on ja false mikäli ei.
+   * 
+   * @return 
+   */
   public boolean onkoLoydetty(){
       return loydetty;
   }
-  
   
   /**Metodi palauttaa nappulan tunnistearvon String-muotoisena.
    * 
    * @return 
    */
+    @Override
   public String toString(){
       return "" + this.tunniste;
   }

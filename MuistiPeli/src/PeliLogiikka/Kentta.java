@@ -101,7 +101,16 @@ public class Kentta {
   public void piilotaNappula(int paikka){//<-testit!
       nappulat[paikka].piilotaNappula();
   }
-  /** Metodi muuttaa löydetyn parin näkyväksi. 
+  
+  /**Metodi asettaa syötteen mukaisella paikalla olevan nappulan löydetyksi.
+   * 
+   * @param paikka 
+   */
+  public void loydaNappula(int paikka){
+      nappulat[paikka].loydetty();
+  }
+  
+  /** Metodi muuttaa löydetyn parin näkyväksi. Toimii tekstikäyttöliittymässä.
    * 
    * @param nappula1
    * @param nappula2 
@@ -147,8 +156,7 @@ public class Kentta {
       return sisalto;
   }
   
-  /**Kokeellista tekstikäyttöliittymää varten luotu metodi, jonka tehtävä on huolehtia tulosteen ulkoasusta.
-   * Ei toimi oikein toistaiseksi.
+  /**Tekstikäyttöliittymää varten luotu metodi, jonka tehtävä on huolehtia tulosteen ulkoasusta.
    * 
    * @return 
    */

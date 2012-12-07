@@ -40,6 +40,10 @@ public class Pelaaja implements Comparable<Pelaaja>{
   public void kasvataPisteita(){ 
       this.pisteet = pisteet + 1;
   }
+  
+  public void vahennaPisteita(){
+      this.pisteet = pisteet -1;
+  }
 
   /** Metodi palauttaa pelajaan pisteet.
    * 

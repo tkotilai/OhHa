@@ -7,6 +7,9 @@ import java.util.*;
  */
 public class Logiikka {
   private Kentta kentta;
+  private Pelaaja pelaaja;
+  private int vuoro;
+  private String vaikeusaste;
   
   /**Luokan konstruktori, luo pelikentan vaikeusasteen mukaan (jonka ottaa parametrinä,
    * liittaa pelaajat peliin, koodi kesken, korjataan myöhemmin oikeaa peliä vastaavaksi.
@@ -16,8 +19,23 @@ public class Logiikka {
    * @param vaikeustaso
    * @param pelaaja 
    */
-  public Logiikka (Kentta kentta){ 
-      this.kentta = kentta;
+  public Logiikka (String vaikeusaste, Pelaaja pelaaja){
+      this.vaikeusaste = vaikeusaste;
+      if(vaikeusaste.equalsIgnoreCase("helppo")){          
+          this.kentta = new Kentta(16);
+      }
+      if(vaikeusaste.equalsIgnoreCase("vaikea")){
+          this.kentta = new Kentta(32);
+      }
+      this.pelaaja = pelaaja;
+      this.vuoro = 1;
+  }
+  /**Metodi palauttaa pelin vaikeusasteen.
+   * 
+   * @return 
+   */
+  public String getVaikeus(){
+      return this.vaikeusaste;
   }
   
   
@@ -32,10 +50,8 @@ public class Logiikka {
   public boolean etsiParia(int ensimmainen, int toinen){
       
       if (kentta.onPari(ensimmainen, toinen)== true){
-          System.out.println("Löysit parin");
           return true;
       } else {
-          System.out.println("Ei pari.");
           return false;
       }
   }
@@ -49,8 +65,14 @@ public class Logiikka {
           kentta.piilotaNappula(nappula2);    
   }
   
+  /**Metodi tarkastaa onko syötteenä annetulla paikalla oleva nappula löydetty.
+   * Mikäli on, metodi palauttaa true.
+   * 
+   * @param i
+   * @return 
+   */
   public boolean onkoJoLoydetty(int i){
-      if(kentta.palautaNappula(i).aukiVaiKiinni()== true){
+      if(kentta.palautaNappula(i).onkoLoydetty()== true){
           return true;
       } else {
           return false;
@@ -79,7 +101,24 @@ public class Logiikka {
   public int naytaNappula(int paikka){
       kentta.naytaNappula(paikka);
       System.out.println(piirraKentta());
-      return paikka;
+      return paikka;     
+  }
+  
+  public void avaaNappula(int paikka){
+      kentta.naytaNappula(paikka);
+  }
+  
+  public boolean onkoAuki(int paikka){
+      if(kentta.palautaNappula(paikka).aukiVaiKiinni()==true){
+          return true;
+      } else {
+          return false;
+      }
+  }
+  
+  public void asetaLoydetyiksi(int paikka1, int paikka2){
+      kentta.loydaNappula(paikka1);
+      kentta.loydaNappula(paikka2);
   }
   
   /**Metodi palauttaa pelikentän koon.
@@ -98,7 +137,11 @@ public class Logiikka {
   public String piirraKentta(){
       return kentta.piirraKentta();
   }
-  
+  /**Metodi testaa onko peli loppu, eli ovatko kaikki nappulat jo löydettyjä.
+   * Palauttaa true, mikäli näin on, mutten palauttaa false.
+   * 
+   * @return 
+   */
   public boolean onkoPeliLoppu(){ 
       boolean onkoLoppu = false;     
       int nappuloidenLaskuri = 0;
@@ -114,7 +157,77 @@ public class Logiikka {
       }        
       return onkoLoppu;
   }
-  /**Toistaiseksi turha toString-metodi, testauksen vuoksi...
+  /**Metodi kasvattaa pelaajan pisteitä, mikäli hän löytää parin. Parin paikat
+   * pelikentällä otetaan syötteenä. Lisättyjen pisteiden määrä riippu pelin 
+   * vaikeusasteesta. Metodi palauttaa pelaajan sen hetkiset pisteet.
+   * 
+   * @param i
+   * @param j
+   * @return 
+   */
+  public int kasvataPisteita(int i, int j){
+      int t = 0;
+      if(etsiParia(i,j)==true && vaikeusaste.equalsIgnoreCase("helppo")){
+          while(t<20){
+              pelaaja.kasvataPisteita();
+              t++;
+          }
+      }
+      if(etsiParia(i,j)==true && vaikeusaste.equalsIgnoreCase("vaikea")){
+          while(t<10){
+              pelaaja.kasvataPisteita();
+              t++;
+          }
+      }
+      return pelaaja.getPisteet();
+  }
+  
+  /**Metodi palauttaa pelaajan nimen, käytetään tulosteiden tekemisessä.
+   * 
+   * @return 
+   */
+  public String pelaajanNimi(){
+      return pelaaja.getNimi();
+  }
+  
+  /**Metodi palauttaa pelaajan pisteet.
+   * 
+   * @return 
+   */
+  public int annaPisteet(){
+      return pelaaja.getPisteet();
+  }
+  
+  /**Metodi palauttaa sen nappulan tunnisteen, joka sijaitsee parametrina 
+   * annetulla koordinaatilla.
+   * 
+   * @param paikka
+   * @return 
+   */
+  public String nappulanTunniste(int paikka){
+      return kentta.palautaNappula(paikka).toString();
+  }
+  
+  /**Metodi suorittaa joka pelivuoroon liittyviä toimenpiteitä. Se kasvattaa 
+   * vuoroa yhdellä ja vähentää pelaajan pisteistä yhden joka vuorolla.
+   * 
+   */
+  public void pelaaVuoro(){
+      vuoro++;
+      if(pelaaja.getPisteet()>0){
+          pelaaja.vahennaPisteita();
+      }
+  }
+  
+  /**Metodi palauttaa nykyisen vuoron numeron.
+   * 
+   * @return 
+   */
+  public int getVuoro(){
+      return this.vuoro;
+  }
+  /**Tekstikäyttöliittymän tulostamiseen tarkoitettu toString()-metodi. 
+   * Palauttaa pelikentän tilaa edustavan merkkijonon.
    * 
    * @return 
    */
