@@ -18,7 +18,7 @@ public class LogiikkaTest {
     
     @Before
     public void setUp() {
-        peli = new Logiikka(new Kentta(16)); 
+        peli = new Logiikka("vaikea", new Pelaaja ("tahvo")); 
     }
     
     @After
@@ -42,21 +42,46 @@ public class LogiikkaTest {
     @Test
     public void nappulanAvaaminenJaSulkeminenToimii(){
         peli.taytaKentta();
-        String testattava = peli.piirraKentta();
-        assertSame(testattava, peli.piirraKentta());
-//        peli.naytaNappula(3);
-//        peli.naytaNappula(6);
-//        assertNotSame(testattava, peli.piirraKentta());
-//        peli.piilotaNappulat(3, 6);
-//        assertSame(testattava, peli.piirraKentta());
+        for (int i = 0; i <peli.pelikentanKoko(); i++){
+            assertFalse(peli.onkoAuki(i));
+        }
+        peli.naytaNappula(3);
+        peli.naytaNappula(6);
+        assertTrue(peli.onkoAuki(3));
+        assertTrue(peli.onkoAuki(6));
+        peli.piilotaNappulat(3, 6);
+        for (int i = 0; i <peli.pelikentanKoko(); i++){
+            assertFalse(peli.onkoAuki(i));
+        }
     }
     
-    /**En keksi sopivaa testimetodia parin etsintämetodille tällä hetkellä.
-     * 
-     */
+
     @Test
     public void etsiPariaToimii(){
-        
+        peli.taytaKentta();
+        for(int i = 0; i < peli.pelikentanKoko(); i++){
+            for(int j = 0; j < peli.pelikentanKoko(); j++){
+                if(i !=j){
+                    if (peli.nappulanTunniste(i).equalsIgnoreCase(peli.nappulanTunniste(j))){ 
+                        assertTrue(peli.etsiParia(i, j));
+                    } else {
+                        assertFalse(peli.etsiParia(i, j));
+                    }
+                }
+            }
+        }
+    }
+    
+    @Test
+    public void onkoPeliLoppuToimii(){
+        peli.taytaKentta();
+        assertFalse(peli.onkoPeliLoppu());
+        peli.asetaLoydetyiksi(0, 1);
+        assertFalse(peli.onkoPeliLoppu());
+        for(int i = 0; i < peli.pelikentanKoko()-1; i++){
+            peli.asetaLoydetyiksi(i, i+1);
+        }
+        assertTrue(peli.onkoPeliLoppu());
     }
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:

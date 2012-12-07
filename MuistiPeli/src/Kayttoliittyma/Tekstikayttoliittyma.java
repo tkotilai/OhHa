@@ -14,26 +14,22 @@ import java.io.PrintWriter;
 public class Tekstikayttoliittyma {
     private Scanner lukija;
     private Logiikka peli;
-    private Pelaaja pelaaja;
-    private int vuoro;
-    private File highscore;
-    private File kayttajat;
-    private File salasanat;
-    private TiedostonHallinta tiedostot;
-    
+//    private File highscore;
+//    private File kayttajat;
+//    private File salasanat;
+//    private TiedostonHallinta tiedostot;
+//    
 /**Luokan konstruktori.
  * 
  * @param lukija
  * @param peli
  * @param pelaaja 
  */
-    public Tekstikayttoliittyma(Scanner lukija, Logiikka peli, Pelaaja pelaaja){
+    public Tekstikayttoliittyma(Scanner lukija, Logiikka peli){
         this.lukija = lukija;
-        this.pelaaja = pelaaja;
         this.peli = peli;
-        this.vuoro = 0;
-        this.kayttajat = new File("testi.txt");
-        this.highscore = new File("highscore.txt");        
+//        this.kayttajat = new File("testi.txt");
+//        this.highscore = new File("highscore.txt");        
     }
     
 /**Metodi valmistaa pelilaudan pelaamista varten.
@@ -76,11 +72,10 @@ public class Tekstikayttoliittyma {
             System.out.println("Ei pari.");
         } else {
             System.out.println("Loysit parin!");
-            pelaaja.kasvataPisteita();
+            peli.kasvataPisteita(eka, toka);
         }
         
         if(peli.onkoPeliLoppu()==true){
-            vuoro++;
             return true;
         }
         
@@ -94,18 +89,11 @@ public class Tekstikayttoliittyma {
             System.out.println();
         }
         
-        System.out.println(pelaaja.getNimi() + "\n" + "Pisteet: " + pelaaja.getPisteet());
-        this.vuoro++;
+        System.out.println(peli.pelaajanNimi() + "\n" + "Pisteet: " + peli.annaPisteet());
+        peli.pelaaVuoro();
         return false;
     }
     
-/**Metodi palauttaa vuoron numeron, voidaan käyttää pelin lopettamiseen tarvittaessa.
- * 
- * @return 
- */
-    public int getVuoro(){
-        return this.vuoro;
-    }
     
 /**Metodi vastaanottaa syötteitä käyttäjältä ja varmistaa niiden oikeellisuuden.
  * 
@@ -179,8 +167,8 @@ public class Tekstikayttoliittyma {
             }
         }
         
-        System.out.println("Peli loppu!" + "\n" + pelaaja.getNimi() +
-                ", pisteesi ovat: " + pelaaja.getPisteet() + "\n" + 
-                "Sinulla meni siihen " + getVuoro() + " vuoroa.");
+        System.out.println("Peli loppu!" + "\n" + peli.pelaajanNimi() +
+                ", pisteesi ovat: " + peli.annaPisteet() + "\n" + 
+                "Sinulla meni siihen " + peli.getVuoro() + " vuoroa.");
     }   
 }

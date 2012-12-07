@@ -110,7 +110,7 @@ public class Peliruutu implements ActionListener{
         }
 
         for(int i = 0; i < logiikka.pelikentanKoko(); i++){
-            if(logiikka.onkoAuki(i)==false){
+            if(logiikka.onkoAuki(i)==false && logiikka.onkoJoLoydetty(i)==false){
                 nappitaulukko[i].setBackground(Color.CYAN);
                 nappitaulukko[i].setText("?");
             }
@@ -133,9 +133,13 @@ public class Peliruutu implements ActionListener{
   
             if(logiikka.etsiParia(hakutaulukko[0], hakutaulukko[1]) && hakutaulukko[0] != hakutaulukko[1]){
                 logiikka.kasvataPisteita(hakutaulukko[0], hakutaulukko[1]);
-                nappitaulukko[hakutaulukko[0]].setEnabled(false);                
-                nappitaulukko[hakutaulukko[1]].setEnabled(false);
-                logiikka.asetaLoydetyiksi(hakutaulukko[0], hakutaulukko[1]); 
+                logiikka.asetaLoydetyiksi(hakutaulukko[0], hakutaulukko[1]);
+                if(logiikka.onkoJoLoydetty(hakutaulukko[0]) ==true 
+                        && logiikka.onkoJoLoydetty(hakutaulukko[1])==true){
+                    nappitaulukko[hakutaulukko[0]].setEnabled(false);                
+                    nappitaulukko[hakutaulukko[1]].setEnabled(false);
+                }    
+ 
                 peli.paivitaKentat();
 
                 ikkuna.validate();
@@ -148,7 +152,9 @@ public class Peliruutu implements ActionListener{
                 peliLoppui();
             }
             montakoKaannetty = 0;
-            logiikka.pelaaVuoro();
+            if(hakutaulukko[0] != hakutaulukko[1]){
+                logiikka.pelaaVuoro();
+            }    
         }        
     }
 }
